@@ -1,0 +1,68 @@
+<!-- Launches: gazebo_interface -->
+<launch>
+	<arg name="robot_namespace"     default="drone0" />
+	<arg name="mav_name"            default="hummingbird" />	
+	<arg name="drone_id"            default="1" />
+	<arg name="frecuency"     		default="100" />
+	<arg name="estimated_pose"    	default="ground_truth/pose" />
+	<arg name="estimated_speed"    	default="ground_truth/speed" />
+
+	<group ns="$(arg robot_namespace)">
+		<!-- gazebo_imu_interface -->
+		<node name="gazebo_imu_interface" pkg="gazebo_interface" type="gazebo_imu_interface"  output="screen">
+			<param name="drone_id" value="$(arg drone_id)" type="int"/>
+			<param name="frecuency" value="$(arg frecuency)" type="int"/>
+			<param name="mav_name" value="$(arg mav_name)" type="string"/>
+		</node>
+
+		<!-- gazebo_altitude_interface : sensor_measurement/altitude-->
+		<node name="gazebo_altitude_interface" pkg="gazebo_interface" type="gazebo_altitude_interface"  output="screen">
+			<param name="drone_id" value="$(arg drone_id)" type="int"/>
+			<param name="frecuency" value="$(arg frecuency)" type="int"/>
+			<param name="mav_name" value="$(arg mav_name)" type="string"/>
+		</node>
+
+		<!-- gazebo_speed_interface : sensor_measurement/speed -->
+		<node name="gazebo_speed_interface" pkg="gazebo_interface" type="gazebo_speed_interface"  output="screen">
+			<param name="drone_id" value="$(arg drone_id)" type="int"/>
+			<param name="frecuency" value="$(arg frecuency)" type="int"/>
+			<param name="mav_name" value="$(arg mav_name)" type="string"/>
+		</node>
+
+		<!-- gazebo_command_interface -->
+		<node name="gazebo_command_interface" pkg="gazebo_interface" type="gazebo_command_interface" output="screen">
+			<param name="drone_id" value="$(arg drone_id)" type="int"/>
+			<param name="mav_name" value="$(arg mav_name)" type="string"/>
+    	</node>
+
+    	<!-- gazebo_ground_truth_interface -->
+		<node name="gazebo_ground_truth_interface" pkg="gazebo_interface" type="gazebo_ground_truth_interface" output="screen">
+			<param name="drone_id" value="$(arg drone_id)" type="int"/>
+			<param name="frecuency" value="$(arg frecuency)" type="int"/>
+			<param name="estimated_pose" value="$(arg estimated_pose)" type="string"/>
+			<param name="estimated_speed" value="$(arg estimated_speed)" type="string"/>
+			<param name="mav_name" value="$(arg mav_name)" type="string"/>
+		</node>
+
+    	<!-- gazebo_battery_interface -->
+		<node name="gazebo_battery_interface" pkg="gazebo_interface" type="gazebo_battery_interface" output="screen">
+			<param name="drone_id" value="$(arg drone_id)" type="int"/>
+			<param name="mav_name" value="$(arg mav_name)" type="string"/>
+		</node>
+
+    	<!-- gazebo_flightstate_interface -->
+		<node name="gazebo_flightstate_interface" pkg="gazebo_interface" type="gazebo_flightstate_interface" output="screen">
+			<param name="drone_id" value="$(arg drone_id)" type="int"/>
+			<param name="frecuency" value="$(arg frecuency)" type="int"/>
+			<param name="mav_name" value="$(arg mav_name)" type="string"/>
+		</node>
+
+    	<!-- gazebo_camera_interface -->
+		<node name="gazebo_camera_interface" pkg="gazebo_interface" type="gazebo_camera_interface" output="screen">
+			<param name="drone_id" value="$(arg drone_id)" type="int"/>
+			<param name="frecuency" value="$(arg frecuency)" type="int"/>
+			<param name="mav_name" value="$(arg mav_name)" type="string"/>
+		</node>
+
+	</group>
+</launch>
