@@ -35,13 +35,13 @@ set(GAZEBO_INTERFACE_HEADER_FILES
   )
 
 find_package(catkin REQUIRED
-                COMPONENTS roscpp std_msgs geometry_msgs sensor_msgs gazebo_msgs robot_process aerostack_msgs lib_cvgutils tf_conversions)
+                COMPONENTS roscpp std_msgs geometry_msgs sensor_msgs gazebo_msgs robot_process aerostack_msgs mav_msgs lib_cvgutils tf_conversions)
 
 
 
 catkin_package(
 #       INCLUDE_DIRS ${OKTODRIVER_INCLUDE_DIR}
-        CATKIN_DEPENDS roscpp std_msgs geometry_msgs sensor_msgs gazebo_msgs robot_process aerostack_msgs lib_cvgutils tf_conversions
+        CATKIN_DEPENDS roscpp std_msgs geometry_msgs sensor_msgs gazebo_msgs robot_process aerostack_msgs mav_msgs lib_cvgutils tf_conversions
   )
 
 
